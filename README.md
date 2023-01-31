@@ -1,0 +1,1 @@
+# d_registration_fullstack
