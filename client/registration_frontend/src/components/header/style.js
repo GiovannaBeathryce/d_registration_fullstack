@@ -8,6 +8,7 @@ const Header = styled.div`
     padding: 0 10px;
     color: #d1d1d4;
 
+
     .logo__header{
         font-size: 22px;
         font-weight: 700;

@@ -17,19 +17,22 @@ const BodyTitle = styled.div`
         font-size: 14px;
         margin-bottom: 5px;
         font-weight: 400;
+        color: #d1d1d4;
+
     }
     .body__sub-t{
         margin-top: 5px;
         font-size: 15px;
         font-weight: 300;
         display: flex;
+        color: #d1d1d4;
 
     }
     
     .link__login{
         margin-left: 5px;
         color: #9cdbf7;
-        font-weight: 500;
+        font-weight: 400;
     }
 
 `

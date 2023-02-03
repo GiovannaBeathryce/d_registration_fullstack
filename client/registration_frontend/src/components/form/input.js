@@ -40,6 +40,7 @@ const InputBox = styled.div`
             font-size: 12px;
             padding: 0 10px;
             background-color: #203a43;
+            border-radius: 15px;
             letter-spacing: 1px;
         }
     }
