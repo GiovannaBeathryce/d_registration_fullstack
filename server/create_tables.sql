@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS usuario(
+  id BIGSERIAL PRIMARY KEY,
+  nome VARCHAR(60) NOT NULL,
+  sobrenome VARCHAR(120) NOT NULL,
+  email VARCHAR(120) UNIQUE NOT NULL,
+  senha VARCHAR(120) NOT NULL,
+  telefone VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS contatos(
+  id BIGSERIAL PRIMARY KEY,
+  nome VARCHAR(60) NOT NULL,
+  sobrenome VARCHAR(120) NOT NULL,
+  apelido VARCHAR(30) NOT NULL,
+  aniversario VARCHAR(12),
+  telefone VARCHAR(20) NOT NULL,
+  usuario_id INTEGER,
+  FOREIGN KEY (usuario_id) REFERENCES usuario (id)
+);
+
