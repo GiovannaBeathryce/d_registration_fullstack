@@ -6,7 +6,7 @@ import InputBox from '../../components/form/input';
 import BodyTitle from '../../components/boryTitle';
 import Body from "./style";
 import Button from '../../components/form/button';
-import ButtonIcon from "../home/style";
+import {ButtonIcon} from "../home/style";
 import MainContainer from "../../components/mainContainer";
 
 const LoginPage = () => {
