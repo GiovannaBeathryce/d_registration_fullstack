@@ -1,5 +1,6 @@
 import createUserService from '../services/users/createUser.service'
 import listUserService from '../services/users/listUser.service'
+import listUserIdService from '../services/users/listUserId.service'
 import deleteUserService from '../services/users/deleteUser.service'
 import updateUserService from '../services/users/updateUser.service'
 
@@ -18,7 +19,17 @@ export const createUserController = async (req, res) => {
 export const listUserController = async (req, res) => {
     try {
         const users = await listUserService()
-        return res.status(201).json(users)
+        return res.status(200).json(users)
+        
+    } catch (err) {
+        return res.status(400).json(err.message)
+    }
+}
+export const listUserIdController = async (req, res) => {
+    const id = req.params.id
+    try {
+        const users = await listUserIdService(id)
+        return res.status(200).json(users)
         
     } catch (err) {
         return res.status(400).json(err.message)

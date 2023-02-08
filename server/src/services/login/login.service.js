@@ -27,7 +27,7 @@ const loginService = async (email, senha) => {
             subject: user.id
         })
 
-        return {token}
+        return {token, user}
     }
     catch(err){
         throw new Error(err)
