@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useContext} from "react";
+import { UserContext } from "../../contexts/userContext";
 import { Link } from "react-router-dom";
 import {useForm} from 'react-hook-form'
 import HeaderContainer from "../../components/header/header"
@@ -13,12 +14,8 @@ import {RxEyeClosed, RxEyeOpen} from 'react-icons/rx'
 
 const HomePage = () => {
     const [visible, setVisible] = useState(false)
-    const {register, handleSubmit, reset} = useForm()
-
-    const CreateUser = (data) => {
-        console.log(data)
-        reset()
-    }
+    const {register, handleSubmit} = useForm()
+    const {CreateUser} = useContext(UserContext)
 
     return(
         <MainContainer>

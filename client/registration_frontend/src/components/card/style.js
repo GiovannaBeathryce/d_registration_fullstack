@@ -37,11 +37,23 @@ export const CardContainer = styled.div`
     margin-top: 10px;
 
     background-color:  #baf0ff52;
-    padding: 10px;
+    padding: 20px;
     border-radius: 15px;
 
     font-size: 16px;
     color: #000;
+
+    .dados_do_contato{
+        color:#d1d1d4e3;
+        text-align: initial;
+        width: 80%;
+        font-size: 14px;
+        font-weight: 300;
+
+        p{
+            margin: 2px;
+        }
+    }
     
 `
 

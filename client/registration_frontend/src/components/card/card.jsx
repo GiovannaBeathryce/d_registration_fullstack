@@ -3,42 +3,50 @@ import { ContactContext } from '../../contexts/contactsContext'
 import {RiUserSettingsLine, RiUserUnfollowLine} from 'react-icons/ri'
 import {ContainerCards ,CardContainer} from "./style"
 
-
 const Cards = () => {
-    const {setContactId, setUpdateContact, setDeleteContact} = useContext(ContactContext);
+    const {ListContacts ,contacts ,setContactId, setUpdateContact, setDeleteContact, loading} = useContext(ContactContext);
 
-    const updateUser = ()=>{
-        // console.log(id)
-        // setContactId(id)
+    useEffect(()=>{
+        ListContacts()
+    },[])
+    
+    const updateUser = (id)=>{
+        setContactId(id)
         setUpdateContact(true)   
     }
     
-    const removeUser = ()=>{
-        // console.log(id)
-        // setContactId(id)
+    const removeUser = (id)=>{
+        setContactId(id)
         setDeleteContact(true)
     }
 
-    return(
+    if (loading) {
+        return <div>Carregando...</div>
+    }
+    return (
         <ContainerCards>
-                    <CardContainer>
-                        <section>
-                            <p>{}</p>
-                            <p>Email</p>
-                            <p>Endereço</p>
+            {
+                contacts.map((contact)=>(
+                    <CardContainer key={contact.id}>
+                        <section className='dados_do_contato'>
+                            <p>{`Nome: ${contact.nome} ${contact.sobrenome}`}</p>
+                            <p>{`Telefone:  ${contact.telefone}`}</p>
+                            <p>{`Email: ${contact.email}`}</p>
                         </section>
                         
                         <button 
                         className="btn__icon btn__modal" 
-                        onClick={(e) => updateUser(1)}>
+                        onClick={(e) => updateUser(contact.id)}>
                             <RiUserSettingsLine id='add' size={25}/>
                         </button>
                         <button 
                         className="btn__icon btn__modal" 
-                        onClick={(e) => removeUser(2)}>
+                        onClick={(e) => removeUser(contact.id)}>
                             <RiUserUnfollowLine id='delete' size={25}/>
                         </button>
-                </CardContainer>
+                    </CardContainer>
+                ))
+            }                
         </ContainerCards>
     )
 }

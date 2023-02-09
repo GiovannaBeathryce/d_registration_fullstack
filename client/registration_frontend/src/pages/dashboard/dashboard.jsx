@@ -1,6 +1,7 @@
 import MainContainer from '../../components/mainContainer'
 import { useState, useContext, useEffect} from 'react'
 import { AuthContext } from '../../contexts/authContext'
+import { UserContext } from '../../contexts/userContext'
 import { ContactContext } from '../../contexts/contactsContext'
 import {RiUserAddLine} from 'react-icons/ri'
 import HeaderContainer from '../../components/header/header'
@@ -11,21 +12,15 @@ import {ModalCreateContact, ModalUpdateContact, ModalDeleteContact, ModalUpdateU
 
 const Dashboard = () => {
     const { LogOut, user } = useContext(AuthContext);
-    const {ListContacts, contacts } = useContext(ContactContext);
-
-    const [addContact, setAddContact] = useState(false)
-    const [updateContact, setUpdateContact] = useState(false)
-    const [deleteContact, setDeleteContact] = useState(false)
-    const [updateUser, setUpdateUser] = useState(false)
+    const { ListUserId, updateUser, setUpdateUser } = useContext(UserContext);
+    const {addContact, setAddContact, updateContact,deleteContact,} = useContext(ContactContext);
 
     useEffect(()=>{
-        console.log(user)
-        console.log(contacts)
-    },[user, contacts])
+        ListUserId()
+    },[])
 
     return(
-        <MainContainer>
-           
+        <MainContainer>           
             <HeaderContainer prop={'sair'}>
                 <button className='btn_header' onClick={() => setUpdateUser(true)}>Editar</button>
                 <button className='btn_header' onClick={LogOut}>Sair</button>
@@ -42,25 +37,25 @@ const Dashboard = () => {
                     </button>
                 </section>
 
-                <Cards setDeleteContact={setDeleteContact} setUpdateContact={setUpdateContact}/>        
+                <Cards/>        
             </Dash>
           
             {
                 updateUser? 
                     updateUser && (
-                        <ModalUpdateUser setUpdateUser={setUpdateUser}/>
+                        <ModalUpdateUser/>
                     )
                 :addContact? 
                     addContact && (
-                        <ModalCreateContact />
+                        <ModalCreateContact/>
                     )
                 :updateContact? 
                     updateContact && (
-                        <ModalUpdateContact setUpdateContact={setUpdateContact}/>
+                        <ModalUpdateContact/>
                     )
                 : deleteContact?
                     deleteContact && (
-                        <ModalDeleteContact setDeleteContact={setDeleteContact}/>
+                        <ModalDeleteContact/>
                     )
                 : null
             }

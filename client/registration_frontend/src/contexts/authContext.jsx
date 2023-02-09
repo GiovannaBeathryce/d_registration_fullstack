@@ -1,6 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {useForm} from 'react-hook-form'
 import api from '../services/api';
 
 export const AuthContext = createContext({});
@@ -9,18 +8,16 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const {reset} = useForm()
 
 
   useEffect(() => {
-    async function getUser() {
+    const getUser = async () => {
         const token = localStorage.getItem('@AllContacts:token');
         const id = localStorage.getItem('@AllContacts:id');
     
       if (token) {
         try {
           api.defaults.headers.authorization = `Bearer ${token}`;
-
           const { data } = await api.get(`/user/${id}`);
 
           setUser(data);
@@ -42,6 +39,7 @@ const AuthProvider = ({ children }) => {
 
         setUser(userData);
         localStorage.setItem('@AllContacts:token', token);
+        localStorage.setItem('@AllContacts:nome', userData.nome);
         localStorage.setItem('@AllContacts:id', userData.id);
         
         navigate('/contatos', { replace: true });
@@ -49,10 +47,10 @@ const AuthProvider = ({ children }) => {
 
     const LogOut = () => {
         localStorage.clear('@AllContacts:token');
+        localStorage.clear('@AllContacts:nome')
         localStorage.clear('@AllContacts:id');
 
         navigate('/login', { replace: true });
-
     }
 
   return (
