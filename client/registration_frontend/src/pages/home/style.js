@@ -13,4 +13,8 @@ export const Div = styled.div`
     align-items: center;
     justify-content: center;
     height: 90%;
+
+    .form_home{
+        margin-top: 40px;
+    }
 `
