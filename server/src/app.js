@@ -5,7 +5,6 @@ import UserRoutes from './routes/users.routs'
 import ContatosRouts from './routes/contatos.routs'
 const cors = require('cors')
 
-
 const app = express()
 
 app.use(express.json())
