@@ -11,7 +11,7 @@ export const Div = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     height: 90%;
 
     .form_home{
