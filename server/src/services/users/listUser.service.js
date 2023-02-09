@@ -1,6 +1,6 @@
 import database from "../../database/database"
 
-const listUserService = async (user) => {
+const listUserService = async () => {
     try {
         const res = await database.query("SELECT * FROM usuario")
         return res.rows 
