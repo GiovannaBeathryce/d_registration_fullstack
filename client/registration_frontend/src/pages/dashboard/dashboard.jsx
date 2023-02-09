@@ -1,53 +1,69 @@
 import MainContainer from '../../components/mainContainer'
-import { useState } from 'react'
+import { useState, useContext, useEffect} from 'react'
+import { AuthContext } from '../../contexts/authContext'
+import { ContactContext } from '../../contexts/contactsContext'
 import {RiUserAddLine} from 'react-icons/ri'
 import HeaderContainer from '../../components/header/header'
 import Cards from '../../components/card/card';
 import Dash from './style'
-import Link from '../../components/link';
-import {ModalCreateUser, ModalUpdate, ModalDelete} from '../../components/modal/modal'
+import {ModalCreateContact, ModalUpdateContact, ModalDeleteContact, ModalUpdateUser} from '../../components/modal/modal'
 
 
 const Dashboard = () => {
-    const [addUser, setAddUser] = useState(false)
-    const [editUser, setEditUser] = useState(false)
-    const [deleteUser, setDeleteUser] = useState(false)
-       
+    const { LogOut, user } = useContext(AuthContext);
+    const {ListContacts, contacts } = useContext(ContactContext);
+
+    const [addContact, setAddContact] = useState(false)
+    const [updateContact, setUpdateContact] = useState(false)
+    const [deleteContact, setDeleteContact] = useState(false)
+    const [updateUser, setUpdateUser] = useState(false)
+
+    useEffect(()=>{
+        console.log(user)
+        console.log(contacts)
+    },[user, contacts])
+
     return(
         <MainContainer>
-              {
-                addUser? 
-                    addUser && (
-                        <ModalCreateUser setAddUser={setAddUser}/>
-                    )
-                :editUser? 
-                    editUser && (
-                        <ModalUpdate setEditUser={setEditUser}/>
-                    )
-                : deleteUser?
-                    deleteUser && (
-                        <ModalDelete setDeleteUser={setDeleteUser}/>
-                    )
-                : null
-            }
+           
             <HeaderContainer prop={'sair'}>
-                <Link href="">Editar</Link>
+                <button className='btn_header' onClick={() => setUpdateUser(true)}>Editar</button>
+                <button className='btn_header' onClick={LogOut}>Sair</button>
             </HeaderContainer>
 
             <Dash>
-                <h2 className='subtitle'> NOME essa é sua pagina de gestão de contatos</h2>
+                <h2 className='subtitle'> {user.nome} essa é sua pagina de gestão de contatos</h2>
 
                 <section className='insertUser'>
                     <button 
                     className='btn__add btn__icon'
-                    onClick={() => setAddUser(true)}>
+                    onClick={() => setAddContact(true)}>
                         <RiUserAddLine size={20}/>
                     </button>
                 </section>
 
-                <Cards setDeleteUser={setDeleteUser} setEditUser={setEditUser}/>        
+                <Cards setDeleteContact={setDeleteContact} setUpdateContact={setUpdateContact}/>        
             </Dash>
           
+            {
+                updateUser? 
+                    updateUser && (
+                        <ModalUpdateUser setUpdateUser={setUpdateUser}/>
+                    )
+                :addContact? 
+                    addContact && (
+                        <ModalCreateContact />
+                    )
+                :updateContact? 
+                    updateContact && (
+                        <ModalUpdateContact setUpdateContact={setUpdateContact}/>
+                    )
+                : deleteContact?
+                    deleteContact && (
+                        <ModalDeleteContact setDeleteContact={setDeleteContact}/>
+                    )
+                : null
+            }
         </MainContainer>
     )
 }

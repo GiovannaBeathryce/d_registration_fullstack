@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const Link = styled.a`
+const ARedirect = styled.a`
     display: flex;
     align-items: center;
     color: #d1d1d4;
@@ -14,4 +14,4 @@ const Link = styled.a`
     }
 `
 
-export default Link
+export default ARedirect

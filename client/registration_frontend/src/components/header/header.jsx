@@ -7,13 +7,6 @@ const HeaderContainer = ({prop, children}) => {
         <Header>
             <Link className='logo__header'><BsFillPersonLinesFill size={25} className='svg__link' />AllContacts</Link>
             {children}
-            {
-                prop == 'sair'?
-                    <Link>Sair</Link>
-                    : prop == 'entrar'?
-                    <Link>Entrar</Link>
-                    : null
-            }
             
         </Header>
     )

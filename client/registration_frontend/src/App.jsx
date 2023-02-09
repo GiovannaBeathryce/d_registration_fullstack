@@ -1,16 +1,15 @@
 import './App.css';
-// import HomePage from './pages/home';
-// import ModalDash from './components/modal/modal';
-import Dashboard from './pages/dashboard/dashboard';
+import AuthProvider from './contexts/authContext';
+import ContactProvider from './contexts/contactsContext';
 import Routes from './routes/routes';
 
 function App() {
   return (
-    // <div className="App">
-    <>
-      <Routes/>
-    </>
-    /* </div> */
+    <AuthProvider>
+      <ContactProvider>
+        <Routes/>
+      </ContactProvider>
+    </AuthProvider>
   )
 }
 
